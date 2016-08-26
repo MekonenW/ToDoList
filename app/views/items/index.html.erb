@@ -1,0 +1,50 @@
+<style>#container{background-color:#4ABDAC;margin: 20px; padding: 20px}p,button{font-size: 21px} button{width: 150px; height: 40px; background-color: black; color: white} h1{color:green}</style>
+<div id= 'container'>
+<% if user_signed_in?%>
+<center><h1>Hi, <%=current_user.email %></h1></center><hr>
+	<% @items.each do |item| %>
+		<div class='row'>
+			<div class="col-md-5">
+				<% if item.completed_at != nil%>
+
+				<h3>To Do List:<strike><a href="/items/<%= item.id%>"> <%= item.title%></a></strike></h3>
+				<p> Description: <a href="/items/<%= item.id%>"> <%= item.description%></a><p/>
+				<% else %>
+				<h3>To Do List:<a href="/items/<%= item.id%>"> <%= item.title%></a></h3>
+				<p> Description: <a href="/items/<%= item.id%>"> <%= item.description%></a><p/>
+				<%end %>
+			</div>
+		
+		<div class='col-md-3' >
+			<button><a href="/items/<%= item.id%>/edit">Edit Item</a></button><br><br>
+			<form action='/items/<%= item.id %>' method='post'>
+				<% if current_user %>
+
+
+					<input type='hidden' name="authenticity_token" value="<%= form_authenticity_token %>">
+					<input type='hidden' name='_method' value='delete'>
+					<button type='submit'>Delete</button>
+				<% end %>
+
+			</form></br>
+			<form action='/items/<%= item.id %>/complete' method='post'>
+				<% if current_user %>
+
+					<input type='hidden' name="authenticity_token" value="<%= form_authenticity_token %>">
+					<input type='hidden' name='_method' value='patch'>
+					<button>Complete</button>
+				<% end %>
+
+			</form>
+		</div>
+		<div class="col-md-4">
+			<h3>Created at:<a href="/items/<%= item.id%>"> <%= item.created_at.in_time_zone("America/Chicago").strftime('%v,  %I:%M:%S %p')%></a></h3>
+		</div>
+	</div>
+		<hr>
+	<% end %>
+<% else %>
+	<%= render "layouts/welcome_page"%> 
+
+<% end %>
+</div>

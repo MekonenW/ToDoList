@@ -1,0 +1,17 @@
+<style>button{ background-color: black; width: 150px; height: 40px}.one{background-color: #4ABDAC; text-align: center; margin: 40px; padding: 20px}</style>
+<div class='one'>
+<h2>To do list :<%= @item.title%></h2>
+<h2>Description: <%= @item.description%></h2>
+<h2>Created at: <%= @item.created_at.in_time_zone("America/Chicago").strftime('%v,  %I:%M:%S %p')%></h2>
+<% if @item.completed_at != nil %>
+<h2>Completed at: <%= @item.completed_at.in_time_zone("America/Chicago").strftime('%v,  %I:%M:%S %p')%></h2>
+<% else %>
+<h2>Task Not Completed!</h2>
+<% end %>
+
+<button><a href="/items/<%= @item.id%>/edit">Edit List</a></button>
+<button><a href="/">Back</a></button>
+<hr>
+</div>
+
+

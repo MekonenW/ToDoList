@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ToDoList</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <style>h1{margin-left: 40px}</style>
+  </head>
+
+  <body>
+  	<nav class= "navbar navbar-default">
+  		<div class= 'container'>
+  			<div class='navbar-header'>
+	  			<ul class= "nav navbar-nav">
+	  				<li><a href="/">Check List</a></li>
+	  				<li><a href="/users/sign_up">Sign Up</a></li>
+	  				<% if current_user.present?%>
+						<li><a href="/users/sign_out" data-method='delete'>Logout</a></li>
+					 <% else %>
+						<li><a href="/users/sign_in">Log in</a></li>
+	  				<% end %>
+	  			
+          <% if user_signed_in? %>
+           <li> <a href="/items/new">Add To Do Item</a><li>
+
+          <% end %>
+          </ul>
+  			</div>
+  		</div>
+
+  	</nav>
+     <center> <%= image_tag("logos/chek.jpg",width: "700px", height: '200px')%>      <%= image_tag("logos/chek.jpg",width: "700px", height: '200px')%></center>
+
+      <center><h1>WELCOME TO CHECKLIST</h1></center>
+
+  	   <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+    <%= yield %>
+  </body>
+</html>

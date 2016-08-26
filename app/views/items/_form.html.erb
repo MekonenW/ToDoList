@@ -1,0 +1,16 @@
+<style>button{ background-color: yellow; width: 150px; height: 40px}.one{background-color: #4ABDAC; text-align: center; margin: 40px; padding: 20px}</style>
+<div class='one'>
+<div class= 'error'>
+	        <% if flash[:errors] %>
+	                <% flash[:errors].each do |error| %>
+	                        <p> <%= error %> </p> 
+	                <% end %>
+	        <% end %>
+</div>
+<%= simple_form_for @item do |f|%>
+	<%= f.input :title%>
+	<%= f.input :description%>
+	<%= f.button :submit%>
+<%end %>
+
+</div>
