@@ -95,8 +95,10 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
+    passenger (5.0.30)
+      rack
+      rake (>= 0.8.1)
     pkg-config (1.1.7)
-    puma (3.6.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -187,7 +189,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen (~> 3.0.5)
-  puma (~> 3.0)
+  passenger
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-footnotes
   sass-rails (~> 5.0)
